@@ -10,6 +10,7 @@ const dbConfig = {
     port: 5432,
 };
 
+
 interface User {
     id: string;
     username: string;
