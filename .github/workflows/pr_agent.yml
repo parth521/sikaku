@@ -1,0 +1,23 @@
+name: Private AI PR Reviewer
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  pr_agent_job:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      pull-requests: write
+      contents: read # Necessary to safely read your private repo diff
+    steps:
+      - name: Run PR Agent
+        uses: the-pr-agent/pr-agent@main
+        env:
+          OPENAI_KEY: ${{ secrets.OPENAI_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          
+          # 💡 UNCOMMENT the two lines below if you are using DeepSeek instead of OpenAI:
+          # OPENAI.BASE_URL: https://api.deepseek.com/v1
+          # CONFIG.MODEL: deepseek-chat
