@@ -10,14 +10,14 @@ jobs:
     permissions:
       issues: write
       pull-requests: write
-      contents: read # Necessary to safely read your private repo diff
+      contents: read
     steps:
       - name: Run PR Agent
         uses: the-pr-agent/pr-agent@main
         env:
-          OPENAI_KEY: ${{ secrets.OPENAI_KEY }}
+          OPENAI_KEY: ${{ secrets.OPENAI_KEY }}  # Keep this secret name, but make sure it holds your DeepSeek key
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           
-          # 💡 UNCOMMENT the two lines below if you are using DeepSeek instead of OpenAI:
-          # OPENAI.BASE_URL: https://api.deepseek.com/v1
-          # CONFIG.MODEL: deepseek-chat
+          # 🚀 ADD THESE TWO LINES TO ROUTE TO DEEPSEEK:
+          OPENAI.BASE_URL: https://api.deepseek.com/v1
+          CONFIG.MODEL: deepseek-chat
